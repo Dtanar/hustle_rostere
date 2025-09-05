@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:todosql/widgets/circle_container.dart';
 import '../data/data.dart';
 import '../utils/extensions.dart';
 
@@ -23,16 +24,10 @@ class TaskTile extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16, bottom: 10, left: 16, right: 8),
       child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: task.category.color.withValues(alpha: backgroundOpacity),
-              border: Border.all(
-                color: task.category.color.withValues(alpha: iconOpacity),
-                width: 2,
-              ),
-            ),
+          CircleContainer(
+            color: task.category.color.withValues(alpha: backgroundOpacity),
+
+            borderColor: task.category.color.withValues(alpha: iconOpacity),
             child: Center(
               child: Icon(
                 task.category.icon,
@@ -55,13 +50,13 @@ class TaskTile extends StatelessWidget {
                   ),
                 ),
                 const Gap(5),
-                Text(
-                  task.note,
-                  style: style.bodyMedium?.copyWith(
-                    decoration: textDecoration,
-                    fontSize: 16,
-                  ),
-                ),
+                // Text(
+                //   task.note,
+                //   style: style.bodyMedium?.copyWith(
+                //     decoration: textDecoration,
+                //     fontSize: 16,
+                //   ),
+                // ),
                 const Gap(5),
                 Text(
                   task.time,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CircleContainer extends StatelessWidget {
-  const CircleContainer({super.key, required this.color, this.child});
+  const CircleContainer({super.key, required this.color, this.child, required this.borderColor});
   final Color color;
+  final Color borderColor;
   final Widget? child;
 
   @override
@@ -12,14 +13,9 @@ class CircleContainer extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: color,
-        border: Border.all(
-          color: color,
-          width: 2,
-        ),
+        border: Border.all(color: borderColor, width: 2),
       ),
-      child: Center(
-        child: child,
-      ),
+      child: Center(child: child),
     );
   }
 }

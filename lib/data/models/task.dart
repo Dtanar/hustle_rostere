@@ -9,7 +9,7 @@ class Task extends Equatable {
   final String time;
   final TaskCategories category;
   final bool isCompleted;
-  final String createdAt;
+  final String dueDate;
 
   const Task({
     this.id,
@@ -18,11 +18,11 @@ class Task extends Equatable {
     required this.time,
     required this.category,
     required this.isCompleted,
-    required this.createdAt,
+    required this.dueDate,
   });
 
   @override
   List<Object?> get props {
-    return [id!, title, note, time, isCompleted, createdAt];
+    return [id!, title, note, time, isCompleted, dueDate];
   }
 }

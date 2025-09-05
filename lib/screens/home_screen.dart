@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                           note: 'note',
                           time: 'time',
                           isCompleted: false,
-                          createdAt: 'createdAt',
+                          dueDate: 'createdAt',
                           category: TaskCategories.work,
                         ),
                         Task(
@@ -63,16 +63,8 @@ class HomeScreen extends StatelessWidget {
                           note: 'note',
                           time: 'time',
                           isCompleted: false,
-                          createdAt: 'createdAt',
+                          dueDate: 'createdAt',
                           category: TaskCategories.education,
-                        ),
-                        Task(
-                          title: 'title',
-                          note: 'note',
-                          time: 'time',
-                          isCompleted: false,
-                          createdAt: 'createdAt',
-                          category: TaskCategories.work,
                         ),
                       ],
                     ),
@@ -90,7 +82,19 @@ class HomeScreen extends StatelessWidget {
 
                     const Gap(10),
 
-                    DisplayListOfTask(isCompletedTask: true, tasks: []),
+                    DisplayListOfTask(
+                      isCompletedTask: true,
+                      tasks: [
+                        Task(
+                          title: 'title',
+                          note: '',
+                          time: 'time',
+                          isCompleted: true,
+                          dueDate: '2025-09-05',
+                          category: TaskCategories.work,
+                        ),
+                      ],
+                    ),
 
                     const Gap(20),
 
