@@ -4,7 +4,6 @@ import '../data/models/models.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-
 class DisplayListOfTask extends StatelessWidget {
   const DisplayListOfTask({
     super.key,
@@ -40,7 +39,23 @@ class DisplayListOfTask extends StatelessWidget {
               itemCount: tasks?.length ?? 0,
               itemBuilder: (context, index) {
                 final task = tasks![index];
-                return TaskTile(task: task);
+                return InkWell(
+                  onLongPress: () {
+                    //TODO: DELETE TASK
+                  },
+                  onTap: () async {
+                    await showModalBottomSheet(
+                      constraints: BoxConstraints(minWidth: deviceSize.width),
+
+                      context: context,
+                      builder: (context) {
+                        return TaskDetailsSheet(task: task);
+                      },
+                    );
+                  },
+
+                  child: TaskTile(task: task),
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(thickness: 2);
