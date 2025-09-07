@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todosql/config/routes/routes.dart';
 import 'package:todosql/data/models/task.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
-import '../utils/extensions.dart';
-import 'create_hustle_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static HomeScreen builder(BuildContext context, GoRouterState state) =>
@@ -104,14 +103,9 @@ class HomeScreen extends StatelessWidget {
                     const Gap(20),
 
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CreateHustleScreen(),
-                          ),
-                        );
-                      },
+                      onPressed: () =>
+                          context.push(RoutesLocation.createHustle),
+
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(
                           colors.tertiary,

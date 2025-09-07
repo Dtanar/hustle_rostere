@@ -16,7 +16,20 @@ class CreateHustleScreen extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      body: Center(child: Text('Create Hustle Screen')),
+      body:SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Task Title',
+              ),
+              onChanged: (value) {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
