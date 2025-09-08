@@ -33,7 +33,7 @@ class Hustle extends Equatable {
       HustleKeys.note: note,
       HustleKeys.time: time,
       HustleKeys.categories: category.name,
-      HustleKeys.isCompleted: isCompleted,
+      HustleKeys.isCompleted: isCompleted ? 1: 0,
       HustleKeys.date: dueDate,
     };
   }
@@ -45,8 +45,28 @@ class Hustle extends Equatable {
       note: map[HustleKeys.note],
       time: map[HustleKeys.time],
       category: HustleCategories.stringToCategory(map[HustleKeys.categories]),
-      isCompleted: map[HustleKeys.isCompleted],
+      isCompleted: map[HustleKeys.isCompleted] == 1 ? true: false,
       dueDate: map[HustleKeys.date],
+    );
+  }
+
+Hustle copyWith({
+  int? id,
+    String? title,
+    String? note,
+    HustleCategories? category,
+    String? time,
+    String? dueDate,
+    bool? isCompleted,
+  }) {
+    return Hustle(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      note: note ?? this.note,
+      category: category ?? this.category,
+      time: time ?? this.time,
+      dueDate: dueDate ?? this.dueDate,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 }

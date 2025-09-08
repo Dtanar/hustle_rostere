@@ -24,7 +24,7 @@ class HustleRepositoriesImpl implements HustleRepository {
   }
 
   @override
-  Future<List<Hustle>> getAllHustles(Hustle hustle) async{
+  Future<List<Hustle>> getAllHustles() async{
     try {
       return await _datasource.getAllHustles();
     } catch (e) {
