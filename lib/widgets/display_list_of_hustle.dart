@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../data/models/models.dart';
+import '../data/data.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-class DisplayListOfTask extends StatelessWidget {
-  const DisplayListOfTask({
+class DisplayListOfHustle extends StatelessWidget {
+  const DisplayListOfHustle({
     super.key,
     this.tasks,
     this.isCompletedTask = false,
   });
 
-  final List<Task>? tasks;
+  final List<Hustle>? tasks;
 
   final bool isCompletedTask;
 
@@ -49,12 +49,12 @@ class DisplayListOfTask extends StatelessWidget {
 
                       context: context,
                       builder: (context) {
-                        return TaskDetailsSheet(task: task);
+                        return HustleDetailsSheet(hustle: task);
                       },
                     );
                   },
 
-                  child: TaskTile(task: task),
+                  child: HustleTile(hustle: task),
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

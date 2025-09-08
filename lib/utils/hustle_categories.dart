@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum TaskCategories {
+enum HustleCategories {
   education(Icons.school, Colors.blue),
   work(Icons.work, Colors.green),
   personal(Icons.person, Colors.orange),
@@ -12,11 +12,18 @@ enum TaskCategories {
   travel(Icons.flight, Colors.amber),
   others(Icons.category, Colors.grey);
 
+  static HustleCategories stringToCategory(String name) {
+    try {
+      return HustleCategories.values.firstWhere(
+        (category) => category.name == name,
+      );
+    } catch (e) {
+      return HustleCategories.others;
+    }
+  }
+
   final IconData icon;
   final Color color;
 
-  const TaskCategories(
-    this.icon,
-    this.color
-  );
+  const HustleCategories(this.icon, this.color);
 }

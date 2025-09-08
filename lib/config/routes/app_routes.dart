@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:todosql/screens/screens.dart';
+import '../../screens/screens.dart';
 import 'routes.dart';
 
 final navigationKey = GlobalKey<NavigatorState>();

@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:todosql/widgets/circle_container.dart';
+import '../widgets/widgets.dart';
 import '../data/data.dart';
-import '../utils/extensions.dart';
+import '../utils/utils.dart';
 
-class TaskTile extends StatelessWidget {
-  const TaskTile({super.key, required this.task, this.onCompleted});
-  final Task task;
+class HustleTile extends StatelessWidget {
+  const HustleTile({super.key, required this.hustle, this.onCompleted});
+  final Hustle hustle;
   final Function(bool?)? onCompleted;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colorScheme;
     final style = context.textTheme;
-    final double iconOpacity = task.isCompleted ? 0.3 : 1.0;
-    final double backgroundOpacity = task.isCompleted ? 0.1 : 0.3;
-    final textDecoration = task.isCompleted
+    final double iconOpacity = hustle.isCompleted ? 0.3 : 1.0;
+    final double backgroundOpacity = hustle.isCompleted ? 0.1 : 0.3;
+    final textDecoration = hustle.isCompleted
         ? TextDecoration.lineThrough
         : TextDecoration.none;
-    final fontWeight = task.isCompleted ? FontWeight.normal : FontWeight.bold;
+    final fontWeight = hustle.isCompleted ? FontWeight.normal : FontWeight.bold;
 
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 10, left: 16, right: 8),
       child: Row(
         children: [
           CircleContainer(
-            color: task.category.color.withValues(alpha: backgroundOpacity),
+            color: hustle.category.color.withValues(alpha: backgroundOpacity),
 
-            borderColor: task.category.color.withValues(alpha: iconOpacity),
+            borderColor: hustle.category.color.withValues(alpha: iconOpacity),
             child: Center(
               child: Icon(
-                task.category.icon,
-                color: task.category.color.withValues(alpha: iconOpacity),
+                hustle.category.icon,
+                color: hustle.category.color.withValues(alpha: iconOpacity),
               ),
             ),
           ),
@@ -42,7 +42,7 @@ class TaskTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  task.title,
+                  hustle.title,
                   style: style.titleMedium?.copyWith(
                     decoration: textDecoration,
                     fontSize: 20,
@@ -59,7 +59,7 @@ class TaskTile extends StatelessWidget {
                 // ),
                 const Gap(5),
                 Text(
-                  task.time,
+                  hustle.time,
                   style: style.bodySmall?.copyWith(
                     decoration: textDecoration,
                     color: colors.onSurface.withValues(alpha: .7),
@@ -68,7 +68,7 @@ class TaskTile extends StatelessWidget {
               ],
             ),
           ),
-          Checkbox(value: task.isCompleted, onChanged: onCompleted),
+          Checkbox(value: hustle.isCompleted, onChanged: onCompleted),
         ],
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:todosql/providers/providers.dart';
-import 'package:todosql/utils/utils.dart';
-import 'package:todosql/widgets/widgets.dart';
+import '../providers/providers.dart';
+import '../utils/utils.dart';
+import '../widgets/widgets.dart';
 
 class SelectCategory extends ConsumerWidget {
   const SelectCategory({super.key});
@@ -11,7 +11,7 @@ class SelectCategory extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedCategory = ref.watch(categoryProvider);
-    final categories = TaskCategories.values.toList();
+    final categories = HustleCategories.values.toList();
     return SizedBox(
       height: 80,
       child: Row(

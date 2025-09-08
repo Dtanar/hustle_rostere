@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:todosql/utils/utils.dart';
+import '../utils/utils.dart';
 import '../providers/providers.dart';
 
 import 'widgets.dart';

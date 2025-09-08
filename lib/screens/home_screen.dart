@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todosql/config/routes/routes.dart';
-import 'package:todosql/data/models/task.dart';
+import '../config/config.dart';
+import '../data/data.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 
@@ -52,23 +52,23 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    DisplayListOfTask(
+                    DisplayListOfHustle(
                       tasks: [
-                        Task(
+                        Hustle(
                           title: 'title',
                           note: 'note',
                           time: 'time',
                           isCompleted: false,
                           dueDate: 'createdAt',
-                          category: TaskCategories.work,
+                          category: HustleCategories.work,
                         ),
-                        Task(
+                        Hustle(
                           title: 'title',
                           note: 'note',
                           time: 'time',
                           isCompleted: false,
                           dueDate: 'createdAt',
-                          category: TaskCategories.education,
+                          category: HustleCategories.education,
                         ),
                       ],
                     ),
@@ -86,16 +86,16 @@ class HomeScreen extends StatelessWidget {
 
                     const Gap(10),
 
-                    DisplayListOfTask(
+                    DisplayListOfHustle(
                       isCompletedTask: true,
                       tasks: [
-                        Task(
+                        Hustle(
                           title: 'title',
                           note: '',
                           time: 'time',
                           isCompleted: true,
                           dueDate: '2025-09-05',
-                          category: TaskCategories.work,
+                          category: HustleCategories.work,
                         ),
                       ],
                     ),

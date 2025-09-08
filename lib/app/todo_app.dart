@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todosql/config/routes/routes_provider.dart';
-
-import '../config/theme/app_theme.dart';
+import '../config/config.dart';
 
 
 

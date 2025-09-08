@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/extensions.dart';
+import '../utils/utils.dart';
 
 class DisplayWhiteText extends StatelessWidget {
   const DisplayWhiteText({
