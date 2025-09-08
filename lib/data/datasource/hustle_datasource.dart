@@ -40,12 +40,12 @@ class HustleDatasource {
   ''');
   }
 
-  Future<int> addHustle(Hustle task) async {
+  Future<int> addHustle(Hustle hustle) async {
     final db = await database;
     return db.transaction((txn) async {
       return await txn.insert(
         DBKeys.dbTable,
-        task.toJson(),
+        hustle.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     });
@@ -60,5 +60,27 @@ class HustleDatasource {
         whereArgs: [hustle.id],
       );
     });
+  }
+
+  Future<int> updateHustle(Hustle hustle) async {
+    final db = await database;
+    return db.transaction((txn) async {
+      return await txn.update(
+        DBKeys.dbTable,
+        hustle.toJson(),
+        where: 'id = ?',
+        whereArgs: [hustle.id],
+      );
+    });
+  }
+
+  Future<List<Hustle>> getAllHustles() async {
+    final db = await database;
+    final List<Map<String, dynamic>> data = await db.query(
+      DBKeys.dbTable,
+      orderBy: 'id DESC',
+    );
+
+    return List.generate(data.length, (index) => Hustle.fromJson(data[index]));
   }
 }
