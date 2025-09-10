@@ -1,6 +1,6 @@
 # todosql
 
-A basic flutter project with sqllite database and riverpod for management 
+A basic flutter todo app project with sqllite database and riverpod for management 
 
 ## Getting Started
 
