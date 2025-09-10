@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:todosql/utils/utils.dart'; 
 
-import '../../utils/utils.dart';
+
 
 class Hustle extends Equatable {
   final int? id;

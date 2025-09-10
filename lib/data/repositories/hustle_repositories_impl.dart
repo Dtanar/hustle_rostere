@@ -1,4 +1,4 @@
-import '..//data.dart';
+import '../data.dart';
 
 class HustleRepositoriesImpl implements HustleRepository {
   final HustleDatasource _datasource;

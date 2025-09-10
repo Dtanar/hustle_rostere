@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import '../providers/providers.dart';
 import '../config/config.dart';
 import '../data/data.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   static HomeScreen builder(BuildContext context, GoRouterState state) =>
       const HomeScreen();
 
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colorScheme;
     final deviceSize = context.deviceSize;
+    final hustleState = ref.watch(hustleProvider);
 
     return Scaffold(
       body: Stack(
@@ -29,11 +32,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DisplayWhiteText(
-                      text: 'Sep 02, 2025',
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    DisplayWhiteText(text: 'Hustle Roster', fontSize: 20),
                     Gap(20),
                     DisplayWhiteText(text: 'Hustle Roster', fontSize: 40),
                   ],
@@ -52,26 +51,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    DisplayListOfHustle(
-                      tasks: [
-                        Hustle(
-                          title: 'title',
-                          note: 'note',
-                          time: 'time',
-                          isCompleted: false,
-                          dueDate: 'createdAt',
-                          category: HustleCategories.work,
-                        ),
-                        Hustle(
-                          title: 'title',
-                          note: 'note',
-                          time: 'time',
-                          isCompleted: false,
-                          dueDate: 'createdAt',
-                          category: HustleCategories.education,
-                        ),
-                      ],
-                    ),
+                    DisplayListOfHustle(tasks: hustleState.hustles),
 
                     const Gap(20),
 
