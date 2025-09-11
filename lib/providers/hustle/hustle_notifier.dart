@@ -6,11 +6,15 @@ import 'hustle.dart';
 class HustleNotifier extends StateNotifier<HustleState> {
   final HustleRepository _hustleRepository;
 
-  HustleNotifier(this._hustleRepository) : super(const HustleState.initial());
+  HustleNotifier(this._hustleRepository) : super(const HustleState.initial()) {
+    // load all task when the app launches or after and a build up
+    getAllHustles();
+  }
 
   Future<void> createHustle(Hustle hustle) async {
     try {
       await _hustleRepository.createHustle(hustle);
+      getAllHustles();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -19,6 +23,7 @@ class HustleNotifier extends StateNotifier<HustleState> {
   Future<void> deleteHustle(Hustle hustle) async {
     try {
       await _hustleRepository.deleteHustle(hustle);
+      getAllHustles();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -29,12 +34,13 @@ class HustleNotifier extends StateNotifier<HustleState> {
       final isCompleted = !hustle.isCompleted;
       final updatedHustle = hustle.copyWith(isCompleted: isCompleted);
       await _hustleRepository.updateHustle(updatedHustle);
+      getAllHustles();
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  Future<void> getAllHustles() async {
+  void getAllHustles() async {
     try {
       final hustles = await _hustleRepository.getAllHustles();
       state = state.copyWith(hustles: hustles);

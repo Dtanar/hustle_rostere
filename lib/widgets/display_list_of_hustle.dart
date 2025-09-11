@@ -1,47 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todosql/providers/hustle/hustle_provider.dart';
 
 import '../data/data.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-class DisplayListOfHustle extends StatelessWidget {
+class DisplayListOfHustle extends ConsumerWidget {
   const DisplayListOfHustle({
     super.key,
-    this.tasks,
-    this.isCompletedTask = false,
+    this.hustles,
+    this.isCompletedhustle = false,
   });
 
-  final List<Hustle>? tasks;
+  final List<Hustle>? hustles;
 
-  final bool isCompletedTask;
+  final bool isCompletedhustle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final deviceSize = context.deviceSize;
-    final height = isCompletedTask
+    final height = isCompletedhustle
         ? deviceSize.height * 0.25
         : deviceSize.height * 0.3;
-    final emptyTaskMessage = isCompletedTask
-        ? 'No completed tasks yet!'
+    final emptyhustleMessage = isCompletedhustle
+        ? 'No completed hustles yet!'
         : 'No hustle to attack!';
 
     return CommonContainer(
       height: height,
-      child: tasks!.isEmpty
+      child: hustles!.isEmpty
           ? Center(
               child: Text(
-                emptyTaskMessage,
+                emptyhustleMessage,
                 style: context.textTheme.headlineSmall,
               ),
             )
           : ListView.separated(
               shrinkWrap: true,
-              itemCount: tasks?.length ?? 0,
+              itemCount: hustles?.length ?? 0,
               itemBuilder: (context, index) {
-                final task = tasks![index];
+                final hustle = hustles![index];
                 return InkWell(
                   onLongPress: () {
-                    //TODO: DELETE TASK
+                    AppAlerts.showDeleteAlertDialog(context, ref, hustle);
                   },
                   onTap: () async {
                     await showModalBottomSheet(
@@ -49,12 +51,27 @@ class DisplayListOfHustle extends StatelessWidget {
 
                       context: context,
                       builder: (context) {
-                        return HustleDetailsSheet(hustle: task);
+                        return HustleDetailsSheet(hustle: hustle);
                       },
                     );
                   },
 
-                  child: HustleTile(hustle: task),
+                  child: HustleTile(
+                    hustle: hustle,
+                    onCompleted: (value) async {
+                      await ref
+                          .read(hustleProvider.notifier)
+                          .updateHustle(hustle)
+                          .then((value) {
+                            AppAlerts.displaySnackBar(
+                              context,
+                              hustle.isCompleted
+                                  ? 'Hustle Incomplete'
+                                  : 'Hustle Completed',
+                            );
+                          });
+                    },
+                  ),
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
